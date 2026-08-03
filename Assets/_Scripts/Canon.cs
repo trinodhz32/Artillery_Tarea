@@ -13,19 +13,22 @@ public class Canon : MonoBehaviour
 
     void Update()
     {
-         rotacion += Input.GetAxis("Horizontal") * AdministradorJuego.VelocidadRotacion;
-    rotacion = Mathf.Clamp(rotacion, -50f, 50f);
+        rotacion += Input.GetAxis("Horizontal") * AdministradorJuego.VelocidadRotacion;
 
-    transform.eulerAngles = new Vector3(0f, 0f, rotacion);
+        if (rotacion > 90) rotacion = 90;
+        if (rotacion < 0) rotacion = 0;
+
+transform.eulerAngles = new Vector3(0, 0, -rotacion);
+
+    if (rotacion > 90) rotacion = 90;
+    if (rotacion < 0) rotacion = 0;
 
     if (Input.GetKeyDown(KeyCode.Space))
     {
         GameObject temp = Instantiate(BalaPrefab, puntaCanon.transform.position, transform.rotation);
         Rigidbody tempRB = temp.GetComponent<Rigidbody>();
-        Vector3 dirreccionDisparo = transform.rotation.eulerAngles;
-        dirreccionDisparo.z = 50 - dirreccionDisparo.x;
-        tempRB.linearVelocity = dirreccionDisparo.normalized * AdministradorJuego.VelocidadBala;
+        Vector2 direccionDisparo = puntaCanon.transform.right;
+        tempRB.linearVelocity = direccionDisparo.normalized * AdministradorJuego.VelocidadBala;
     }
     }
 }
-
