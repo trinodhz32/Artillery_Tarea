@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AdministradorJuego : MonoBehaviour
 {
+    [SerializeField] private GameObject BalaPrefab;
     public static AdministradorJuego SingletonAdministradorJuego;
     public static int VelocidadBala = 30;
     public static int DisparosPorJuego = 10;
@@ -17,5 +18,5 @@ public class AdministradorJuego : MonoBehaviour
         {
             Debug.LogError("Ya existe una instancia de esta clase"); 
         }
-    }
+    } 
 }

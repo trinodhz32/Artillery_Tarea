@@ -8,9 +8,21 @@ public class Bala : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+    void OnCollisionEnter(Collision collision)
     {
+       
+        if (collision.gameObject.name == "Ladrillos")
+        {
+            Debug.Log("Choco");
+        }
+
         
+        if (collision.gameObject.CompareTag = "Ladrillos")
+        { 
+            Debug.Log("Colisiono");
+        }
     }
+    
 }
