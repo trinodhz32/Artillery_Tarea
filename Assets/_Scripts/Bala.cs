@@ -10,19 +10,27 @@ public class Bala : MonoBehaviour
 
 
 
-    void OnCollisionEnter(Collision collision)
+void OnCollisionEnter(Collision collision)
+{
+    if (collision.gameObject.CompareTag("Ladrillos"))
     {
-       
-        if (collision.gameObject.name == "Ladrillos")
-        {
-            Debug.Log("Choco");
-        }
+        Debug.Log("Colisiono con un ladrillo");
 
-        
-        if (collision.gameObject.CompareTag = "Ladrillos")
-        { 
-            Debug.Log("Colisiono");
+        AdministradorJuego.SingletonAdministradorJuego.KinematicOff(collision.gameObject);
+
+        Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            Vector3 direccion = (collision.transform.position - transform.position).normalized;
+            rb.AddForce(direccion * 10f, ForceMode.Impulse);
         }
     }
-    
+
+    if (collision.gameObject.CompareTag("Suelo"))
+    {
+        Destroy(gameObject);
+    }
+}
+
 }
